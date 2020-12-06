@@ -1,0 +1,35 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             x:Class="projektlabor.noah.planmeldung.uiElements.LoadingAnimation"
+             >
+    <Viewbox>
+        <Grid Width="500" Height="500" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <RotateTransform/>
+            </Grid.RenderTransform>
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
+                                To="-360" Duration="0:0:5" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+            <Rectangle Fill="#9A00E1" Margin="209,417,208.035,0.035" RadiusY="50" RadiusX="50"/>
+            <Rectangle Fill="#04C5DA" Margin="356,356,61.035,61.035" RadiusY="50" RadiusX="50"/>
+            <Rectangle Fill="#9A00E1" Margin="416,209,0.035,208.035" RadiusY="50" RadiusX="50"/>
+            <Rectangle Fill="#04C5DA" Margin="356,62,61.035,355.035" RadiusY="50" RadiusX="50"/>
+            <Rectangle Fill="#9A00E1" Margin="209,0,208.035,417.035" RadiusY="50" RadiusX="50"/>
+            <Rectangle Fill="#04C5DA" Margin="61,61,355.035,356.035" RadiusY="50" RadiusX="50"/>
+            <Rectangle Fill="#9A00E1" Margin="0,208,417.035,209.035" RadiusY="50" RadiusX="50"/>
+            <Rectangle Fill="#04C5DA" Margin="60,356,356.035,62.035" RadiusY="50" RadiusX="50"/>
+        </Grid>
+    </Viewbox>
+</UserControl>

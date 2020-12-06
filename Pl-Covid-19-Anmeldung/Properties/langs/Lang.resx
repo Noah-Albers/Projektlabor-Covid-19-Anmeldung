@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="main.admin.dayend.backup" xml:space="preserve">
+    <value>Erstelle Backup...</value>
+  </data>
+  <data name="main.admin.dayend.button" xml:space="preserve">
+    <value>Tagesendroutinen starten</value>
+  </data>
+  <data name="main.admin.dayend.error.smtp.connect.text" xml:space="preserve">
+    <value>Der Remoteserver konnte nicht erreicht werden und das Backup konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut.</value>
+  </data>
+  <data name="main.admin.dayend.error.smtp.connect.title" xml:space="preserve">
+    <value>Fehler beim versenden des Backup's</value>
+  </data>
+  <data name="main.admin.dayend.error.smtp.login.text" xml:space="preserve">
+    <value>Die Authentizierung mit dem Remoteserver ist Fehlgeschlagen und das Backup konnte nicht hochgeladen werden. Bitte starten Sie die Anwendung neu, geben Sie die Anmeldedaten richtig ein und starten Sie die Tagesentroutine erneut.</value>
+  </data>
+  <data name="main.admin.dayend.error.smtp.login.title" xml:space="preserve">
+    <value>Fehler bei der Authentizierung</value>
+  </data>
+  <data name="main.admin.dayend.logout" xml:space="preserve">
+    <value>Melde alle Benutzer ab...</value>
+  </data>
+  <data name="main.admin.dayend.processing" xml:space="preserve">
+    <value>Verarbeite Tagesdaten...</value>
+  </data>
+  <data name="main.admin.dayend.upload" xml:space="preserve">
+    <value>Lade Backup hoch...</value>
+  </data>
+  <data name="main.admin.edituser.loading" xml:space="preserve">
+    <value>Sichere das Profil...</value>
+  </data>
+  <data name="main.admin.edituser.save" xml:space="preserve">
+    <value>Änderungen speichern</value>
+  </data>
+  <data name="main.admin.edituser.select.error.not_found.text" xml:space="preserve">
+    <value>Der ausgewählte Nutzer konnte nicht gefunden werden? Bitte versuchen Sie erneut ihn auszuwählen.</value>
+  </data>
+  <data name="main.admin.edituser.select.error.not_found.title" xml:space="preserve">
+    <value>Benutzer nicht gefunden</value>
+  </data>
+  <data name="main.admin.edituser.select.loading" xml:space="preserve">
+    <value>Lade Benutzer...</value>
+  </data>
+  <data name="main.admin.edituser.title" xml:space="preserve">
+    <value>Profil editieren</value>
+  </data>
+  <data name="main.admin.login.button" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="main.admin.login.field" xml:space="preserve">
+    <value>Passwort eingeben</value>
+  </data>
+  <data name="main.admin.title" xml:space="preserve">
+    <value>Willkommen im Admin-Panel</value>
+  </data>
+  <data name="main.database.connecting" xml:space="preserve">
+    <value>Verbinde zur Datenbank...</value>
+  </data>
+  <data name="main.database.error.connect.text" xml:space="preserve">
+    <value>Es konnte keine Verbindung zu Datenbank hergestellt werden. Bitte versuchen Sie versichern Sie sich, dass das Gerät einen validen Netzwerkzugang hat und die Datenbank erreichen kann.</value>
+  </data>
+  <data name="main.database.error.connect.title" xml:space="preserve">
+    <value>Fehler beim verbinden</value>
+  </data>
+  <data name="main.database.error.connect.user.text" xml:space="preserve">
+    <value>Es konnte keine Verbindung zu Datenbank hergestellt werden. Bitte versuchen Sie es erneut. Sollte diese Nachricht weiterhin angezeigt werden fragen Sie bitte einen Projektlaborianer.</value>
+  </data>
+  <data name="main.database.error.credentials.text" xml:space="preserve">
+    <value>Die Datenbank hat die Verbindung abgebrochen. Bitte überprüfen Sie, dass Sie der Nutzername und das Passwort stimmen und das die Datenbank exestiert.</value>
+  </data>
+  <data name="main.database.error.credentials.title" xml:space="preserve">
+    <value>Fehlerhafte Anmeldeinformationen angegeben</value>
+  </data>
+  <data name="main.error.fatal.text" xml:space="preserve">
+    <value>Es ist ein unerwarteter Fehler aufgetreten. Bitte sagen Sie sofort einem Projektlaborianer bescheid.</value>
+  </data>
+  <data name="main.error.fatal.title" xml:space="preserve">
+    <value>Kritischer Fehler aufgetreten</value>
+  </data>
+  <data name="main.login.button.end" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="main.login.button.start" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="main.login.field.end" xml:space="preserve">
+    <value>Verlassen</value>
+  </data>
+  <data name="main.login.field.lastname" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="main.login.field.start" xml:space="preserve">
+    <value>Betreten</value>
+  </data>
+  <data name="main.login.fields.firstname" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="main.login.select.loading" xml:space="preserve">
+    <value>Lade Benutzer...</value>
+  </data>
+  <data name="main.login.title" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="main.popup.close" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="main.popup.retrie" xml:space="preserve">
+    <value>Erneut versuchen</value>
+  </data>
+  <data name="main.register.accept" xml:space="preserve">
+    <value>Ich akzeptiere, dass meine Daten gespeichert werden.</value>
+  </data>
+  <data name="main.register.accept.text" xml:space="preserve">
+    <value>Ihr Daten werden von uns über die Zeit der Covid-19 Pandemie gespeichert. Wenn Sie angeben, dass ihre Daten nach 6 Wochen gelöscht werden sollen, werden diese innerhalb von 4-6 Wochen von unserem System entfernt. Ihre Daten werden von uns nicht weitergegeben und sind nur von Administratoren einsehbar. Gespeichert werden ihre Daten auf unserem Server im Projektlabor und auf einem Goneo-server welcher in Frankfurt steht.</value>
+  </data>
+  <data name="main.register.button" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="main.register.error.name" xml:space="preserve">
+    <value>Der Benutzername wird bereits verwendet. Bitte geben Sie ihren Namen an. Oder ändern Sie ihn etwas ab um Verwirrung zu vermeiden.</value>
+  </data>
+  <data name="main.register.error.rfid" xml:space="preserve">
+    <value>Dieser RFIC-Code wird bereits verwendet. Bitte verwenden Sie einen anderen Code oder eine andere Karte.</value>
+  </data>
+  <data name="main.register.error.title" xml:space="preserve">
+    <value>Fehler beim Registrieren</value>
+  </data>
+  <data name="main.register.loading" xml:space="preserve">
+    <value>Registriere...</value>
+  </data>
+  <data name="main.register.success.text" xml:space="preserve">
+    <value>Sie haben sich erfolgreich registriert. Bitte melden sie sich jetzt noch an und wenn sie gehen wieder ab.</value>
+  </data>
+  <data name="main.register.success.title" xml:space="preserve">
+    <value>Erfolgreich registriert</value>
+  </data>
+  <data name="main.register.title" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="main.rfid.error.loading.text" xml:space="preserve">
+    <value>Es konnte kein Benutzer mit dieser RFID gefunden werden. Bitte versichern Sie sich, dass Sie die richtige Karte gescannt haben und versuchen Sie erneut die Karte zu scannen. Sollt diese Meldung weiterhin angezeigt werden, fragen Sie einen Projektlaborianer ob er ihrem Profil die RFID-Karte zuweist.</value>
+  </data>
+  <data name="main.rfid.error.loading.title" xml:space="preserve">
+    <value>Nutzer konnte nicht gefunden werden</value>
+  </data>
+  <data name="main.rfid.error.port_not_found.text" xml:space="preserve">
+    <value>Es konnte kein angeschlossener RFID-Scanner gefunden werden. Bitte versichern Sie sich, dass dieser angeschlossen ist. Es kann helfen den Scanner einmal raus und wieder ein zu stecken.</value>
+  </data>
+  <data name="main.rfid.error.port_not_found.title" xml:space="preserve">
+    <value>RFID-Scanner wurde nicht gefunden.</value>
+  </data>
+  <data name="main.rfid.loading" xml:space="preserve">
+    <value>Suche Nutzer...</value>
+  </data>
+  <data name="ui.register.autodeleteaccount" xml:space="preserve">
+    <value>Mein Account soll nach 6 Wochen gelöscht werden.</value>
+  </data>
+  <data name="ui.register.autodeleteaccount.text" xml:space="preserve">
+    <value>Wir versichern, dass ihr Konto nach 4 und allerspätestens 6 Wochen gelöscht wird. Wenn Sie innerhalb dieser Zeitspanne im Projektlabor waren, wird diese Zeit zurückgesetzt.</value>
+  </data>
+  <data name="ui.register.button.scan" xml:space="preserve">
+    <value>Scannen</value>
+  </data>
+  <data name="ui.register.email" xml:space="preserve">
+    <value>Email (Optional)</value>
+  </data>
+  <data name="ui.register.firstname" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="ui.register.lastname" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="ui.register.location" xml:space="preserve">
+    <value>Wohnort</value>
+  </data>
+  <data name="ui.register.opterror.email" xml:space="preserve">
+    <value>Bitte geben Sie eine valide Email-Adresse an.</value>
+  </data>
+  <data name="ui.register.plz" xml:space="preserve">
+    <value>PLZ</value>
+  </data>
+  <data name="ui.register.rfid" xml:space="preserve">
+    <value>RFID-Code (Optional)</value>
+  </data>
+  <data name="ui.register.rfid.text" xml:space="preserve">
+    <value>Halten Sie ihre RFID-Karte oder ihr Handy mit der RFID-App an den Scanner und lassen Sie ihre Karte scannen.</value>
+  </data>
+  <data name="ui.register.rfid.title" xml:space="preserve">
+    <value>Bitte scannen sie ihre RFID-Karte</value>
+  </data>
+  <data name="ui.register.street" xml:space="preserve">
+    <value>Straße</value>
+  </data>
+  <data name="ui.register.street_number" xml:space="preserve">
+    <value>Nr.</value>
+  </data>
+  <data name="ui.register.telephone" xml:space="preserve">
+    <value>Telefon (Optional)</value>
+  </data>
+  <data name="ui.registerinput.opterror.default" xml:space="preserve">
+    <value>Erforderlich</value>
+  </data>
+  <data name="ui.registerinput.regexerror.default" xml:space="preserve">
+    <value>Erforderlich</value>
+  </data>
+</root>

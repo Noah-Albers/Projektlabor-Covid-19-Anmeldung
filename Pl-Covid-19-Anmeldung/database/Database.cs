@@ -13,7 +13,6 @@ namespace projektlabor.noah.planmeldung.database
         /// </summary>
         public static Database Instance { get; private set; }
 
-
         /// <summary>
         /// Holds the connection to the database
         /// </summary>
@@ -157,42 +156,13 @@ namespace projektlabor.noah.planmeldung.database
         public int RegisterUser(ExtendedUserEntity user)
         {
             this.EnsureOpenConnection();
-            //Checks if the first and lastname are already used
-            {
-                // Creates the query
-                var query = new MySqlCommand("SELECT `id`,`firstname`,`rfidcode` FROM `user` WHERE (LOWER(`firstname`)=LOWER(@firstname) AND LOWER(`lastname`)=LOWER(@lastname)) OR `rfidcode`=@rfidcode LIMIT 1", this.connection);
-
-                // Inserts the values
-                query.Parameters.AddWithValue("@firstname", user.Firstname);
-                query.Parameters.AddWithValue("@lastname", user.Lastname);
-                query.Parameters.AddWithValue("@rfidcode", user.RFID);
-                query.Prepare();
-
-                // Gets the result
-                var reader = query.ExecuteReader();
-
-                // Checks if anyone else has taken the name
-                if (reader.Read())
-                {
-                    // Checks if a person already has the name
-                    if (reader.GetString("firstname").ToLower().Equals(user.Firstname.ToLower()))
-                    {
-                        reader.Close();
-                        return 1;
-                    }
-
-                    // The rfid code has a match
-                    reader.Close();
-                    return 2;
-                }
-                reader.Close();
-            }
 
             // Registers the user
+            try
             {
                 // Creates the query
                 var query = new MySqlCommand("INSERT INTO `user` (`id`, `firstname`, `lastname`, `plz`, `location`, `street`, `housenumber`,`email`,`telephone`,`rfidcode`,`autodeleteaccount`,`createdate`) VALUES (NULL, @firstname, @lastname, @plz, @location, @street, @housenumber,@email,@telephone,@rfidcode,@autodelete,@createdate);", this.connection);
-            
+
                 // Inserts the values
                 query.Parameters.AddWithValue("@firstname", user.Firstname);
                 query.Parameters.AddWithValue("@lastname", user.Lastname);
@@ -209,9 +179,36 @@ namespace projektlabor.noah.planmeldung.database
 
                 // Gets the result
                 query.ExecuteNonQuery();
-            }
 
-            return 0;
+                // Exits without any error
+                return 0;
+            }catch(MySqlException e)
+            {
+                // Checks if the exception is a duplicated entry
+                if (e.Number == 1062)
+                {
+                    // The identifier to seperate the column name
+                    string identifier = "key '";
+
+                    // Gets the message and the index of the identifier
+                    string msg = e.Message;
+                    int identifierPos = msg.LastIndexOf(identifier);
+
+                    // Gets the column name
+                    string colName = msg.Substring(identifierPos + identifier.Length, msg.Length - identifier.Length - identifierPos - 1);
+                    
+                    // Checks if the duplicated column was the name combination
+                    if (colName.ToLower().Equals("uq_name"))
+                        return 1;
+
+                    // Checks if the duplicated column was the rfidcode
+                    if (colName.ToLower().Equals("rfidcode"))
+                        return 2;
+                }
+
+                // Parses on the exception
+                throw e;
+            }
         }
 
         /// <summary>
@@ -228,36 +225,8 @@ namespace projektlabor.noah.planmeldung.database
         {
             this.EnsureOpenConnection();
 
-            //Checks if the first and lastname are already used
-            {
-                // Creates the query
-                var query = new MySqlCommand("SELECT `id`,`firstname`,`rfidcode` FROM `user` WHERE ((LOWER(`firstname`)=LOWER(@firstname) AND LOWER(`lastname`)=LOWER(@lastname)) OR `rfidcode`=@rfidcode) and `id`!=@userid LIMIT 1", this.connection);
-
-                // Inserts the values
-                query.Parameters.AddWithValue("@firstname", user.Firstname);
-                query.Parameters.AddWithValue("@lastname", user.Lastname);
-                query.Parameters.AddWithValue("@rfidcode", user.RFID);
-                query.Parameters.AddWithValue("@userid", user.Id);
-                query.Prepare();
-
-                // Gets the result
-                using (var reader = query.ExecuteReader())
-                {
-                    // Checks if anyone else has taken the name
-                    if (reader.Read())
-                    {
-                        // Checks if a person already has the name
-                        if (reader.GetString("firstname").ToLower().Equals(user.Firstname.ToLower()))
-                            return 1;
-
-                        // The rfid code has a match
-                        return 2;
-                    }
-                }
-            }
-
             // Updates the user
-            {
+            try {
                 // Creates the query
                 var query = new MySqlCommand(@"
                     UPDATE `user` SET
@@ -292,6 +261,32 @@ namespace projektlabor.noah.planmeldung.database
                 query.ExecuteNonQuery();
 
                 return 0;
+            }catch(MySqlException e)
+            {
+                // Checks if the exception is a duplicated entry
+                if (e.Number == 1062)
+                {
+                    // The identifier to seperate the column name
+                    string identifier = "key '";
+
+                    // Gets the message and the index of the identifier
+                    string msg = e.Message;
+                    int identifierPos = msg.LastIndexOf(identifier);
+
+                    // Gets the column name
+                    string colName = msg.Substring(identifierPos + identifier.Length, msg.Length - identifier.Length - identifierPos - 1);
+
+                    // Checks if the duplicated column was the name combination
+                    if (colName.ToLower().Equals("uq_name"))
+                        return 1;
+
+                    // Checks if the duplicated column was the rfidcode
+                    if (colName.ToLower().Equals("rfidcode"))
+                        return 2;
+                }
+
+                // Parses on the exception
+                throw e;
             }
         }
 
@@ -328,7 +323,7 @@ namespace projektlabor.noah.planmeldung.database
                     Firstname = reader.GetString("firstname"),
                     Lastname = reader.GetString("lastname"),
                     Location = reader.GetString("location"),
-                    StreetNumber = reader.GetInt32("housenumber"),
+                    StreetNumber = reader.GetString("housenumber"),
                     PLZ = reader.GetInt32("plz"),
                     Street = reader.GetString("street"),
                     Id=user.Id
@@ -370,7 +365,7 @@ namespace projektlabor.noah.planmeldung.database
                     Firstname = reader.GetString("firstname"),
                     Lastname = reader.GetString("lastname"),
                     Location = reader.GetString("location"),
-                    StreetNumber = reader.GetInt32("housenumber"),
+                    StreetNumber = reader.GetString("housenumber"),
                     PLZ = reader.GetInt32("plz"),
                     Street = reader.GetString("street"),
                     Id = reader.GetInt32("id")

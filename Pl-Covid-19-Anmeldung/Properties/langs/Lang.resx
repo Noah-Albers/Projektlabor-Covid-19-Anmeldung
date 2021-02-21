@@ -117,31 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="main.admin.dayend.backup" xml:space="preserve">
+  <data name="backup.backup" xml:space="preserve">
     <value>Erstelle Backup...</value>
   </data>
-  <data name="main.admin.dayend.button" xml:space="preserve">
-    <value>Tagesendroutinen starten</value>
+  <data name="backup.error" xml:space="preserve">
+    <value>Es ist ein Fehler beim durchführen von wichtigen Hintergrundprozessen aufgetreten.</value>
   </data>
-  <data name="main.admin.dayend.error.smtp.connect.text" xml:space="preserve">
-    <value>Der Remoteserver konnte nicht erreicht werden und das Backup konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut.</value>
+  <data name="backup.error.authenticate" xml:space="preserve">
+    <value>Die Authentizierung mit dem Remoteserver ist Fehlgeschlagen und das Backup konnte nicht hochgeladen werden. Bitte überprüfen sie, dass die angegebenen Daten stimmen.</value>
   </data>
-  <data name="main.admin.dayend.error.smtp.connect.title" xml:space="preserve">
-    <value>Fehler beim versenden des Backup's</value>
+  <data name="backup.error.disclaimer" xml:space="preserve">
+    <value>Wenn Sie diesen Fehler sehen, melden Sie ihn bitte einem Projektlaborianer.
+</value>
   </data>
-  <data name="main.admin.dayend.error.smtp.login.text" xml:space="preserve">
-    <value>Die Authentizierung mit dem Remoteserver ist Fehlgeschlagen und das Backup konnte nicht hochgeladen werden. Bitte starten Sie die Anwendung neu, geben Sie die Anmeldedaten richtig ein und starten Sie die Tagesentroutine erneut.</value>
+  <data name="backup.error.retry" xml:space="preserve">
+    <value>Wiederholen</value>
   </data>
-  <data name="main.admin.dayend.error.smtp.login.title" xml:space="preserve">
-    <value>Fehler bei der Authentizierung</value>
+  <data name="backup.error.upload" xml:space="preserve">
+    <value>Der Remoteserver konnte nicht erreicht werden und das Backup konnte nicht hochgeladen werden. Bitte clicken Sie auf wiederholen um den Upload erneut zu versuchen.</value>
   </data>
-  <data name="main.admin.dayend.logout" xml:space="preserve">
+  <data name="backup.logout" xml:space="preserve">
     <value>Melde alle Benutzer ab...</value>
   </data>
-  <data name="main.admin.dayend.processing" xml:space="preserve">
+  <data name="backup.processing" xml:space="preserve">
     <value>Verarbeite Tagesdaten...</value>
   </data>
-  <data name="main.admin.dayend.upload" xml:space="preserve">
+  <data name="backup.upload" xml:space="preserve">
     <value>Lade Backup hoch...</value>
   </data>
   <data name="main.admin.edituser.loading" xml:space="preserve">
@@ -213,6 +214,18 @@
   <data name="main.login.fields.firstname" xml:space="preserve">
     <value>Vorname</value>
   </data>
+  <data name="main.login.loading" xml:space="preserve">
+    <value>Anmelden...</value>
+  </data>
+  <data name="main.login.loading.logout" xml:space="preserve">
+    <value>Abmelden...</value>
+  </data>
+  <data name="main.login.rfid.success.title.login" xml:space="preserve">
+    <value>Willkommen    (Erfolgreich angemeldet)</value>
+  </data>
+  <data name="main.login.rfid.success.title.logout" xml:space="preserve">
+    <value>Tschüss    (Erfolgreich abgemeldet)</value>
+  </data>
   <data name="main.login.select.loading" xml:space="preserve">
     <value>Lade Benutzer...</value>
   </data>
@@ -282,6 +295,9 @@
   <data name="ui.register.email" xml:space="preserve">
     <value>Email (Optional)</value>
   </data>
+  <data name="ui.register.error.street_number" xml:space="preserve">
+    <value>*</value>
+  </data>
   <data name="ui.register.firstname" xml:space="preserve">
     <value>Vorname</value>
   </data>
@@ -319,6 +335,6 @@
     <value>Erforderlich</value>
   </data>
   <data name="ui.registerinput.regexerror.default" xml:space="preserve">
-    <value>Erforderlich</value>
+    <value>Fehlerhaft</value>
   </data>
 </root>

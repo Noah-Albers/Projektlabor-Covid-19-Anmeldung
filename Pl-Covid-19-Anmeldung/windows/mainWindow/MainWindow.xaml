@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000"
+        Title="MainWindow" Height="900" Width="1620"
         xmlns:lang="clr-namespace:projektlabor.noah.planmeldung.Properties.langs"
         xmlns:ui="clr-namespace:projektlabor.noah.planmeldung.uiElements"
         xmlns:own="clr-namespace:projektlabor.noah.planmeldung.windows.mainWindow"
@@ -83,9 +83,9 @@
                         BorderBrush="Black"
                         BorderThickness="1"
                         >
-                        
-                        
-                        
+
+
+
                         <StackPanel>
                             <TextBlock FontSize="30" Text="{x:Static lang:Lang.main_login_title}" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"/>
                             <Grid>
@@ -128,9 +128,9 @@
                             <Button x:Name="ButtonLogin" IsEnabled="False" Content="{x:Static lang:Lang.main_login_button_start}" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="OnLoginButtonClick" FontSize="20"/>
                             <Button x:Name="ButtonLogout" FontSize="20" Click="OnLogoutButtonClick" Visibility="Collapsed" Content="{x:Static lang:Lang.main_login_button_end}" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </StackPanel>
-                        
-                        
-                        
+
+
+
                     </Border>
                     <!--#region Taskbar-->
                     <Border Padding="5" Background="#60000000" Margin="0,0,20,20" VerticalAlignment="Bottom" HorizontalAlignment="Right">
@@ -155,7 +155,7 @@
         </Grid>
 
         <!--#region Overlay-->
-        <Grid x:Name="Overlay" Visibility="Collapsed">
+        <Grid x:Name="Overlay" Visibility="Visible">
             <Border Background="#402B2B2B">
                 <Border
                     MinWidth="500"
@@ -166,7 +166,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">
                     <StackPanel Margin="20">
-                        <!--#region Overlay error-->
+                        <!--#region Overlay info-->
                         <StackPanel x:Name="OverlayInfo" Visibility="Collapsed">
                             <TextBlock
                                 x:Name="OverlayInfoTitle"
@@ -193,12 +193,11 @@
                         </StackPanel>
                         <!--#endregion-->
                         <!--#region Adminpanel-->
-                        <StackPanel x:Name="OverlayAdminPanel">
+                        <StackPanel x:Name="OverlayAdminPanel" Visibility="Collapsed">
                             <TextBlock FontSize="20" Foreground="White" Text="{x:Static lang:Lang.main_admin_title}"/>
-                            <Button Click="OnAdminPanelDayEndButtonClick" HorizontalAlignment="Left" Margin="0,10" FontSize="20" Content="{x:Static lang:Lang.main_admin_dayend_button}"/>
                             <TextBlock FontSize="20" Foreground="White" Text="{x:Static lang:Lang.main_admin_edituser_title}"/>
                             <Border Background="#60000000" Padding="20">
-                                <StackPanel>
+                                <StackPanel MaxWidth="500">
                                     <own:UserSearch OnError="OnAdminPanelEditProfileError" OnSelect="OnAdminPanelEditProfileSelectUser" HorizontalAlignment="Left"/>
                                     <own:RegisterForm x:Name="FormEditProfile" IsEnabled="False"/>
                                     <Button IsEnabled="False" x:Name="ButtonEditProfileSave" Content="{x:Static lang:Lang.main_admin_edituser_save}" Click="OnAdminPanelEditProfileFinishClicked" HorizontalAlignment="Center" FontSize="20" Padding="4" Margin="5,20,5,10"/>

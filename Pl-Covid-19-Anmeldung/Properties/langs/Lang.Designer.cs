@@ -63,81 +63,82 @@ namespace projektlabor.noah.planmeldung.Properties.langs {
         /// <summary>
         ///   Looks up a localized string similar to Erstelle Backup....
         /// </summary>
-        public static string main_admin_dayend_backup {
+        public static string backup_backup {
             get {
-                return ResourceManager.GetString("main.admin.dayend.backup", resourceCulture);
+                return ResourceManager.GetString("backup.backup", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tagesendroutinen starten.
+        ///   Looks up a localized string similar to Es ist ein Fehler beim durchführen von wichtigen Hintergrundprozessen aufgetreten..
         /// </summary>
-        public static string main_admin_dayend_button {
+        public static string backup_error {
             get {
-                return ResourceManager.GetString("main.admin.dayend.button", resourceCulture);
+                return ResourceManager.GetString("backup.error", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der Remoteserver konnte nicht erreicht werden und das Backup konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut..
+        ///   Looks up a localized string similar to Die Authentizierung mit dem Remoteserver ist Fehlgeschlagen und das Backup konnte nicht hochgeladen werden. Bitte überprüfen sie, dass die angegebenen Daten stimmen..
         /// </summary>
-        public static string main_admin_dayend_error_smtp_connect_text {
+        public static string backup_error_authenticate {
             get {
-                return ResourceManager.GetString("main.admin.dayend.error.smtp.connect.text", resourceCulture);
+                return ResourceManager.GetString("backup.error.authenticate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fehler beim versenden des Backup&apos;s.
+        ///   Looks up a localized string similar to Wenn Sie diesen Fehler sehen, melden Sie ihn bitte einem Projektlaborianer.
+        ///.
         /// </summary>
-        public static string main_admin_dayend_error_smtp_connect_title {
+        public static string backup_error_disclaimer {
             get {
-                return ResourceManager.GetString("main.admin.dayend.error.smtp.connect.title", resourceCulture);
+                return ResourceManager.GetString("backup.error.disclaimer", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Authentizierung mit dem Remoteserver ist Fehlgeschlagen und das Backup konnte nicht hochgeladen werden. Bitte starten Sie die Anwendung neu, geben Sie die Anmeldedaten richtig ein und starten Sie die Tagesentroutine erneut..
+        ///   Looks up a localized string similar to Wiederholen.
         /// </summary>
-        public static string main_admin_dayend_error_smtp_login_text {
+        public static string backup_error_retry {
             get {
-                return ResourceManager.GetString("main.admin.dayend.error.smtp.login.text", resourceCulture);
+                return ResourceManager.GetString("backup.error.retry", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fehler bei der Authentizierung.
+        ///   Looks up a localized string similar to Der Remoteserver konnte nicht erreicht werden und das Backup konnte nicht hochgeladen werden. Bitte clicken Sie auf wiederholen um den Upload erneut zu versuchen..
         /// </summary>
-        public static string main_admin_dayend_error_smtp_login_title {
+        public static string backup_error_upload {
             get {
-                return ResourceManager.GetString("main.admin.dayend.error.smtp.login.title", resourceCulture);
+                return ResourceManager.GetString("backup.error.upload", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Melde alle Benutzer ab....
         /// </summary>
-        public static string main_admin_dayend_logout {
+        public static string backup_logout {
             get {
-                return ResourceManager.GetString("main.admin.dayend.logout", resourceCulture);
+                return ResourceManager.GetString("backup.logout", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Verarbeite Tagesdaten....
         /// </summary>
-        public static string main_admin_dayend_processing {
+        public static string backup_processing {
             get {
-                return ResourceManager.GetString("main.admin.dayend.processing", resourceCulture);
+                return ResourceManager.GetString("backup.processing", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Lade Backup hoch....
         /// </summary>
-        public static string main_admin_dayend_upload {
+        public static string backup_upload {
             get {
-                return ResourceManager.GetString("main.admin.dayend.upload", resourceCulture);
+                return ResourceManager.GetString("backup.upload", resourceCulture);
             }
         }
         
@@ -367,6 +368,24 @@ namespace projektlabor.noah.planmeldung.Properties.langs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Willkommen    (Erfolgreich angemeldet).
+        /// </summary>
+        public static string main_login_rfid_success_title_login {
+            get {
+                return ResourceManager.GetString("main.login.rfid.success.title.login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tschüss    (Erfolgreich abgemeldet).
+        /// </summary>
+        public static string main_login_rfid_success_title_logout {
+            get {
+                return ResourceManager.GetString("main.login.rfid.success.title.logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lade Benutzer....
         /// </summary>
         public static string main_login_select_loading {
@@ -574,6 +593,15 @@ namespace projektlabor.noah.planmeldung.Properties.langs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *.
+        /// </summary>
+        public static string ui_register_error_street_number {
+            get {
+                return ResourceManager.GetString("ui.register.error.street_number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vorname.
         /// </summary>
         public static string ui_register_firstname {
@@ -682,7 +710,7 @@ namespace projektlabor.noah.planmeldung.Properties.langs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erforderlich.
+        ///   Looks up a localized string similar to Fehlerhaft.
         /// </summary>
         public static string ui_registerinput_regexerror_default {
             get {

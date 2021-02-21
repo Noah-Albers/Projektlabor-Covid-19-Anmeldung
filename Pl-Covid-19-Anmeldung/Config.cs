@@ -2,7 +2,7 @@
 {
     static class Config
     {
-        public static string DB_NAME = "test";
+        public static string DB_NAME = "planmeldung";
         public static string DB_PASSWORD = "";
         public static string DB_USERNAME = "root";
         public static string DB_ADDRESS = "127.0.0.1";

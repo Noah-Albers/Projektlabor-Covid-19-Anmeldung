@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
             <own:RegisterInput x:Name="FieldStreet" Grid.Column="0" Title="{x:Static lang:Lang.ui_register_street}" MaxLength="50"/>
-            <own:RegisterInput x:Name="FieldStreetNumber" ErrorOnOptional="*" TypeRegex="^\d*$" Grid.Column="2" Title="{x:Static lang:Lang.ui_register_street_number}" MaxLength="10"/>
+            <own:RegisterInput x:Name="FieldStreetNumber" ErrorOnOptional="*" TypeRegex="^[\da-zA-Z]*$" VerifyRegex="^\d+[a-zA-Z]*$" ErrorOnRegex="{x:Static lang:Lang.ui_register_error_street_number}" Grid.Column="2" Title="{x:Static lang:Lang.ui_register_street_number}" MaxLength="10"/>
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>

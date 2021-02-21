@@ -12,7 +12,7 @@
         public string Location { get; set; } = string.Empty;
         public int? PLZ { get; set; } = null;
         public string Street { get; set; } = string.Empty;
-        public int? StreetNumber { get; set; } = null;
+        public string StreetNumber { get; set; } = null;
         public string telephoneNumber { get; set; } = string.Empty;
         public string email { get; set; } = string.Empty;
         public string rfid { get; set; } = string.Empty;

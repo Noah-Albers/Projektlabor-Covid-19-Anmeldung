@@ -65,95 +65,6 @@ namespace projektlabor.noah.planmeldung.windows
         }
 
         /// <summary>
-        /// Executes when the button that starts the day-end routines gets clicked
-        /// </summary>
-        private void OnAdminPanelDayEndButtonClick(object sender, RoutedEventArgs _) => Task.Run(() =>
-        {
-            try
-            {
-                // Displays the next loading
-                this.DisplayLoading(Lang.main_admin_dayend_logout);
-
-                // Logs out all persons
-                Database.Instance.LogoutAllUsers();
-
-                // Displays the next loading
-                this.DisplayLoading(Lang.main_admin_dayend_processing);
-
-                // Deletes all user-accounts that wern't present for 4 weeks and wanted their accounts deleted. Removes all time spent data that has been collected more than 4 weeks ago
-                Database.Instance.AutoDeleteAccounts();
-
-                // Displays the next loading
-                this.DisplayLoading(Lang.main_admin_dayend_backup);
-
-                // Grabs a backup from the database and send it to the backup-email
-                var backup = Database.Instance.GetBackupAsString();
-
-                // Name of the backup file
-                string name = $"Backup-{DateTime.Now.ToString(@"dd\.MM\.yyyy HH\:mm")}";
-
-                // Displays the next loading
-                this.DisplayLoading(Lang.main_admin_dayend_upload);
-
-                // Creates the smtp client
-                var smtpClient = new SmtpClient(Config.SMTP_ADDRESS)
-                {
-                    Port = Config.SMTP_PORT,
-                    Credentials = new NetworkCredential(Config.SMTP_EMAIL, Config.SMTP_PASSWORD),
-                    EnableSsl = true
-                };
-                // Creates the message
-                MailMessage mm = new MailMessage(Config.SMTP_EMAIL, Config.SMTP_EMAIL, name, string.Empty);
-                // Attaches the backup
-                mm.Attachments.Add(new Attachment(backup.ToStream(), name + ".sql"));
-                // Sends the email
-                smtpClient.Send(mm);
-
-                // Displays the next loading
-                this.CloseOverlay();
-                
-            }
-            catch (SmtpException e)
-            {
-
-                // Checks if the connection failed
-                if (e.StatusCode.Equals(SmtpStatusCode.GeneralFailure))
-                    this.DisplayInfo(
-                        Lang.main_admin_dayend_error_smtp_connect_title,
-                        Lang.main_admin_dayend_error_smtp_connect_text,
-                        () => this.DisplayAdminPanel(),
-                        Lang.main_popup_close
-                    );
-                // Checks if the credentials were invalid
-                else if (e.StatusCode.Equals(SmtpStatusCode.TransactionFailed))
-                    this.DisplayInfo(
-                        Lang.main_admin_dayend_error_smtp_login_title,
-                        Lang.main_admin_dayend_error_smtp_login_text,
-                        () => this.DisplayAdminPanel(),
-                        Lang.main_popup_close
-                    );
-                else
-                    // Displays the fatal error
-                    this.DisplayInfo(Lang.main_error_fatal_title, Lang.main_error_fatal_text);
-            }
-            catch (MySqlException)
-            {
-                // Displays the error
-                this.DisplayInfo(
-                    Lang.main_database_error_connect_title,
-                    Lang.main_database_error_connect_text,
-                    () => this.DisplayAdminPanel(),
-                    Lang.main_popup_close
-                );
-            }
-            catch
-            {
-                // Displays the error
-                this.DisplayFatalError();
-            }
-        });
-
-        /// <summary>
         /// Executes when the user search request fails
         /// </summary>
         /// <param name="e">The exception</param>
@@ -255,7 +166,12 @@ namespace projektlabor.noah.planmeldung.windows
 
                     // Checks if the name already existed
                     if (status != 0)
-                        this.Dispatcher.Invoke(()=>this.DisplayInfo("Fehler beim Registrieren.", status == 1 ? "Der Benutzername wird bereits verwendet. Bitte geben Sie ihren Namen an." : "Dieser RFIC-Code wird bereits verwendet. Bitte verwenden Sie einen anderen Code oder eine andere Karte.", ()=> this.DisplayAdminPanel(false), "Schließen"));
+                        this.DisplayInfo(
+                            Lang.main_register_error_title,
+                            status == 1 ? Lang.main_register_error_name : Lang.main_register_error_rfid,
+                            ()=>this.DisplayAdminPanel(),
+                            Lang.main_popup_close
+                        );
                     else
                         // Closes the loading
                         this.Dispatcher.Invoke(()=>this.DisplayAdminPanel());
@@ -299,6 +215,63 @@ namespace projektlabor.noah.planmeldung.windows
                 this.FormEditProfile.IsEnabled = this.ButtonEditProfileSave.IsEnabled = false;
             }
         });
+
+        /// <summary>
+        /// Tries to grab the user and display it inside the admin-edit user panel
+        /// </summary>
+        /// <param name="rfid">The rfid that shall be searched for</param>
+        private void AdminPanelSelectUserByRFID(string rfid)
+        {
+            // Tries to get a user by it's rfid
+            Task.Run(() =>
+            {
+                try
+                {
+                    // Gets the user
+                    var user = Database.Instance.GetUser(rfid);
+
+                    // Checks if a user got found
+                    if (user == null)
+                    {
+                        // Shows the error
+                        this.DisplayInfo(
+                           Lang.main_rfid_error_loading_title,
+                           Lang.main_rfid_error_loading_text,
+                           () => this.DisplayAdminPanel(),
+                           Lang.main_popup_close
+                       );
+                        return;
+                    }
+
+                    // Updates the user
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        // Shows the admin panel
+                        this.DisplayAdminPanel();
+                        // Inserts the user
+                        this.AdminPanelStoredUser = user;
+                        this.FormEditProfile.UserInput = user;
+                        // Enables the edit form
+                        this.FormEditProfile.IsEnabled = this.ButtonEditProfileSave.IsEnabled = true;
+                    });
+                }
+                catch (MySqlException)
+                {
+                    // Displays the error
+                    this.DisplayInfo(
+                        Lang.main_database_error_connect_title,
+                        Lang.main_database_error_connect_user_text,
+                        this.CloseOverlay,
+                        Lang.main_popup_close
+                    );
+                }
+                catch
+                {
+                    // Displays the error
+                    this.DisplayFatalError();
+                }
+            });
+        }
 
         #endregion
     }

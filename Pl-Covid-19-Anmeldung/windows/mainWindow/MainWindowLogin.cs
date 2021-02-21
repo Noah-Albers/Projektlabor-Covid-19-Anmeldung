@@ -3,6 +3,7 @@ using projektlabor.noah.planmeldung.database;
 using projektlabor.noah.planmeldung.database.entities;
 using projektlabor.noah.planmeldung.Properties.langs;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -153,7 +154,7 @@ namespace projektlabor.noah.planmeldung.windows
                 Database.Instance.LogoutUser(this.selectedLoginTime);
 
                 // Closes the overlay and clears the field
-                this.Dispatcher.Invoke(()=>
+                this.Dispatcher.Invoke(() =>
                 {
                     this.LoginResetForm();
                     this.CloseOverlay();
@@ -184,6 +185,108 @@ namespace projektlabor.noah.planmeldung.windows
         #endregion
 
         #region Actions
+
+        /// <summary>
+        /// Tries to login the user using his rfid
+        /// </summary>
+        /// <param name="rfid">The rfid</param>
+        private void LoginUserFromRFID(string rfid)
+        {
+            // Tries to get a user by it's rfid
+            Task.Run(() =>
+            {
+                try
+                {
+                    // Tries to find a user
+                    Tuple<UserEntity, TimeSpentEntity> fetchedUser = Database.Instance.GetUserByRFIDCode(rfid);
+
+                    // Gets the values
+                    var user = fetchedUser.Item1;
+                    var time = fetchedUser.Item2;
+
+                    // Checks if a user got found
+                    if (user == null)
+                    {
+                        // Sends the error
+                        this.Dispatcher.Invoke(() => this.DisplayInfo(
+                            Lang.main_rfid_error_loading_title,
+                            Lang.main_rfid_error_loading_text,
+                            () => this.CloseOverlay(),
+                            Lang.main_popup_close
+                        ));
+                        return;
+                    }
+
+                    // If the user was already logged in
+                    bool isLogin = time == null;
+
+                    // Checks if the user must be logged in or logged out
+                    if (isLogin)
+                    {
+                        // Creates a new time
+                        time = new TimeSpentEntity
+                        {
+                            Start = DateTime.Now
+                        };
+
+                        // Logs in the user
+                        Database.Instance.LoginUser(user,time);
+                    }
+                    else
+                    {
+                        // Sets the stop time
+                        time.Stop = DateTime.Now;
+
+                        // Logs out the user
+                        Database.Instance.LogoutUser(time);
+                    }
+
+                    // Closes the overlay and clears the fields
+                    this.Dispatcher.Invoke(() => this.LoginResetForm());
+
+                    // Displays the short animation
+                    this.LoginStartDisplayCountdown(isLogin);
+                }
+                catch (MySqlException)
+                {
+                    // Displays the error
+                    this.DisplayInfo(
+                        Lang.main_database_error_connect_title,
+                        Lang.main_database_error_connect_user_text,
+                        this.CloseOverlay,
+                        Lang.main_popup_close
+                    );
+                }
+                catch
+                {
+                    // Displays the error
+                    this.DisplayFatalError();
+                }
+            });
+        }
+
+        /// <summary>
+        /// Displays an animation to indicate that the user has successfull been logged out or logged in
+        /// </summary>
+        /// <param name="loggedIn">If the user got logged in or out</param>
+        private void LoginStartDisplayCountdown(bool loggedIn)
+        {
+            // Starts a new task to not block the main application
+            Task.Run(() =>
+            {
+                // Iterates over the animation ten times with a delay of .2s
+                for(int i = 0; i < 5; i++)
+                {
+                    // Displays the animation
+                    this.DisplayInfo(loggedIn? Lang.main_login_rfid_success_title_login : Lang.main_login_rfid_success_title_logout, new string('.',i), null, null, false);
+                    // Waits for a short while
+                    Thread.Sleep(500);
+                }
+
+                // Closes the overlay
+                this.CloseOverlay();
+            });
+        }
 
         /// <summary
         /// Displays the given user in the current login form

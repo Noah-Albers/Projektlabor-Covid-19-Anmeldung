@@ -123,12 +123,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BackupTask.cs" />
     <Compile Include="database\entities\ExtendedUserEntity.cs" />
     <Compile Include="Properties\langs\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
+    <Compile Include="windows\mainWindow\MainWindowBackupHandler.cs" />
     <Compile Include="windows\mainWindow\uielements\RegisterForm.xaml.cs">
       <DependentUpon>RegisterForm.xaml</DependentUpon>
     </Compile>

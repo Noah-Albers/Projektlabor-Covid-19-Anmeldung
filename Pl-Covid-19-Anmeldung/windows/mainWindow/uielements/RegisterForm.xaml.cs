@@ -41,7 +41,7 @@ namespace projektlabor.noah.planmeldung.windows.mainWindow
                     TelephoneNumber=this.DataTelephone,
                     Location=this.DataLocation,
                     PLZ = this.DataPlz.Length > 0 ? int.Parse(this.DataPlz) : null as int?,
-                    StreetNumber = this.DataStreetnumber.Length > 0 ? int.Parse(this.DataStreetnumber) : null as int?,
+                    StreetNumber = this.DataStreetnumber,
                     Street=this.DataStreet,
                     RFID=this.DataRFID
                 };
@@ -55,7 +55,7 @@ namespace projektlabor.noah.planmeldung.windows.mainWindow
                 this.DataTelephone = value.TelephoneNumber;
                 this.DataLocation = value.Location;
                 this.DataPlz = value.PLZ.ToString();
-                this.DataStreetnumber = value.StreetNumber.ToString();
+                this.DataStreetnumber = value.StreetNumber;
                 this.DataStreet = value.Street;
                 this.DataRFID = value.RFID;
             }

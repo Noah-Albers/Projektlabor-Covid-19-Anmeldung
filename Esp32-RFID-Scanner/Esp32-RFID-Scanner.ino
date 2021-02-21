@@ -44,5 +44,5 @@ void loop(){
   // Sends the end character
   Serial.print(".");
   // Gives a little delay
-  delay(500);
+  delay(2000);
 }

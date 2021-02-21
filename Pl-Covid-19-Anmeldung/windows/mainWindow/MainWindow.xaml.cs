@@ -75,104 +75,12 @@ namespace projektlabor.noah.planmeldung.windows
             // Shows the loading window
             this.DisplayLoading(Lang.main_rfid_loading);
 
-            // Tries to get a user by it's rfid
-            Task.Run(() =>
-            {
-                try
-                {
+            // Checks if the user should be grabbed for the admin or login interface
+            if (adm)
+                this.AdminPanelSelectUserByRFID(rfid);
+            else
+                this.LoginUserFromRFID(rfid);
 
-                    // Checks if the user should be inserted into the admin panel or the normal login
-                    if (adm)
-                    {
-                        // Gets the user
-                        var user = Database.Instance.GetUser(rfid);
-
-                        // Checks if a user got found
-                        if (user == null)
-                        {
-                            // Shows the error
-                            this.DisplayInfo(
-                               Lang.main_rfid_error_loading_title,
-                               Lang.main_rfid_error_loading_text,
-                               () => this.DisplayAdminPanel(),
-                               Lang.main_popup_close
-                           );
-                            return;
-                        }
-
-                        // Updates the user
-                        this.Dispatcher.Invoke(() =>
-                        {
-                            // Shows the admin panel
-                            this.DisplayAdminPanel();
-                            // Inserts the user
-                            this.AdminPanelStoredUser = user;
-                            this.FormEditProfile.UserInput = user;
-                            // Enables the edit form
-                            this.FormEditProfile.IsEnabled = this.ButtonEditProfileSave.IsEnabled = true;
-                        });
-                    }
-                    else
-                    {
-                        // Tries to find a user
-                        Tuple<UserEntity, TimeSpentEntity> fetchedUser = Database.Instance.GetUserByRFIDCode(rfid);
-
-                        // Gets the values
-                        var user = fetchedUser.Item1;
-                        var time = fetchedUser.Item2;
-
-                        // Checks if a user got found
-                        if (user == null)
-                        {
-                            // Sends the error
-                            this.Dispatcher.Invoke(() => this.DisplayInfo(
-                                Lang.main_rfid_error_loading_title,
-                                Lang.main_rfid_error_loading_text,
-                                () => this.CloseOverlay(),
-                                Lang.main_popup_close
-                            ));
-                            return;
-                        }
-
-                        // Sets the new time if no previous time has been recorded
-                        if (time == null)
-                            time = new TimeSpentEntity
-                            {
-                                Start = DateTime.Now
-                            };
-                        else
-                            time.Stop = DateTime.Now;
-
-                        this.Dispatcher.Invoke(() =>
-                        {
-                            // Resets the login form
-                            this.LoginResetForm();
-
-                            // Hides the overlay
-                            this.CloseOverlay();
-
-                            // Displays the user
-                            this.LoginDisplayUser(user, time);
-                        });
-                    }
-
-                }
-                catch(MySqlException)
-                {
-                    // Displays the error
-                    this.DisplayInfo(
-                        Lang.main_database_error_connect_title,
-                        Lang.main_database_error_connect_user_text,
-                        this.CloseOverlay,
-                        Lang.main_popup_close
-                    );
-                }
-                catch
-                {
-                    // Displays the error
-                    this.DisplayFatalError();
-                }
-            });
         });
 
         /// <summary>
@@ -296,6 +204,16 @@ namespace projektlabor.noah.planmeldung.windows
 
                     // Closes the loading
                     this.Dispatcher.Invoke(() => this.CloseOverlay());
+
+                    this.backupTask = new BackupTask(
+                        () => this.Dispatcher.Invoke(this.IsWindowReadyForBackup),
+                        info => this.Dispatcher.Invoke(()=>this.OnBackupInfo(info)),
+                        () => this.Dispatcher.Invoke(this.OnBackupEnd),
+                        err => this.Dispatcher.Invoke(() => this.OnBackupError(err))
+                    );
+
+                    // Starts the background-handler
+                    Task.Run(this.backupTask.Start);
                 }
                 catch (MySqlException e)
                 {

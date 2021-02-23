@@ -420,7 +420,13 @@ namespace projektlabor.noah.planmeldung.database
             this.EnsureOpenConnection();
 
             // Creates the query
-            var query = new MySqlCommand("UPDATE `timespent` SET `stop`=@end,`enddisconnect`=1 WHERE `stop` IS NULL;", this.connection);
+            var query = new MySqlCommand(@"
+                    UPDATE `timespent`
+                    SET `stop`=@end,`enddisconnect`=1
+                    WHERE
+                        `stop` IS NULL
+                        AND TIMESTAMPDIFF(hour,start,@end) >= 24;"
+            , this.connection);
 
             // Appends all values
             query.Parameters.AddWithValue("@end", DateTime.Now);

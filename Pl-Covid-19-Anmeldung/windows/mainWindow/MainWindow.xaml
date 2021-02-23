@@ -155,7 +155,7 @@
         </Grid>
 
         <!--#region Overlay-->
-        <Grid x:Name="Overlay" Visibility="Visible">
+        <Grid x:Name="Overlay" Visibility="Hidden">
             <Border Background="#402B2B2B">
                 <Border
                     MinWidth="500"

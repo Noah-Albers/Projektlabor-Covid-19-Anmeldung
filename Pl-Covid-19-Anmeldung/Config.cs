@@ -13,5 +13,8 @@
         public static int SMTP_PORT = 587;
 
         public static string ADMIN_PASSWORD = "1337";
+
+        // How many seconds to wait between backups
+        public static int BACKUP_SCHEDULE_SECONDS = 60 * 60 * 12; 
     }
 }

@@ -65,7 +65,7 @@ namespace projektlabor.noah.planmeldung
                 }
 
                 // Checks if the last execution has passed the time limit
-                if (DateTime.Now.Subtract(lastExecuted).TotalSeconds < 60*60)
+                if (DateTime.Now.Subtract(lastExecuted).TotalSeconds < Config.BACKUP_SCHEDULE_SECONDS)
                 {
                     // Waits recheck
                     Thread.Sleep(1000 * 10);
